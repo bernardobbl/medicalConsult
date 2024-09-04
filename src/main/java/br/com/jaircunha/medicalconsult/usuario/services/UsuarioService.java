@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UsuarioService {
@@ -23,5 +24,26 @@ public class UsuarioService {
 
     public Usuario buscarUsuario(Long id){
         return usuarioRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Usuário não encontrado: ", id));
+    }
+
+    public Usuario deletarUsuario(Long id){
+        usuarioRepository.deleteById(id);
+        return null;
+    }
+
+    public Usuario atualizarUsuario(Long id, Usuario usuario){
+        Optional<Usuario> optionalUsuario = usuarioRepository.findById(id);
+        if (optionalUsuario.isEmpty()){
+            throw new RuntimeException("Id de usuário não encontrado");
+        }
+
+        Usuario user = optionalUsuario.get();
+
+        user.setNomeUsuario(usuario.getNomeUsuario());
+        user.setEmail(usuario.getEmail());
+        user.setDataNascimento(usuario.getDataNascimento());
+        user.setTelefone(usuario.getTelefone());
+
+        return usuarioRepository.save(user);
     }
 }

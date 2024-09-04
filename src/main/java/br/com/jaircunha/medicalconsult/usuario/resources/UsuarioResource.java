@@ -27,9 +27,20 @@ public class UsuarioResource {
         return ResponseEntity.ok().body(usuarios);
     }
 
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<Usuario> buscarUsuario(Long id){
+    @GetMapping("/{id}")
+    public ResponseEntity<Usuario> buscarUsuario(@PathVariable Long id){
         Usuario usuario = usuarioService.buscarUsuario(id);
         return ResponseEntity.ok().body(usuario);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Usuario> deletarUsuario(@PathVariable Long id){
+        Usuario deleteUsuario = usuarioService.deletarUsuario(id);
+        return ResponseEntity.ok().body(deleteUsuario);
+    }
+
+    @PutMapping("/{id}")
+    public Usuario atualizarUsuario(@PathVariable Long id, @RequestBody Usuario usuario){
+        return usuarioService.atualizarUsuario(id, usuario);
     }
 }
