@@ -34,13 +34,14 @@ public class UsuarioResource {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Usuario> deletarUsuario(@PathVariable Long id){
-        Usuario deleteUsuario = usuarioService.deletarUsuario(id);
-        return ResponseEntity.ok().body(deleteUsuario);
+    public ResponseEntity<Void> deletarUsuario(@PathVariable Long id){
+        usuarioService.deletarUsuario(id);
+        return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/{id}")
-    public Usuario atualizarUsuario(@PathVariable Long id, @RequestBody Usuario usuario){
-        return usuarioService.atualizarUsuario(id, usuario);
+    public ResponseEntity<Usuario> atualizarCliente(@PathVariable Long id, @RequestBody Usuario usuario){
+        Usuario upCliente = usuarioService.atualizarUsuario(id, usuario);
+        return ResponseEntity.ok().body(upCliente);
     }
 }

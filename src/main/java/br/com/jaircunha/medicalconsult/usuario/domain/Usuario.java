@@ -2,10 +2,14 @@ package br.com.jaircunha.medicalconsult.usuario.domain;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Date;
 
 @Data
+@Getter
+@Setter
 @Entity
 @Table(name = "USUARIOS")
 public class Usuario {
@@ -23,19 +27,6 @@ public class Usuario {
     private String telefone;
     @Column(name = "DATA_NASCIMENTO")
     private Date dataNascimento;
-
-    // Usado para diferenciar usuários admins de usuários comuns
-//    private Permissao permissao;
-
-    public Usuario() {
-    }
-
-    public Usuario(long idUsuario, String nomeUsuario, String email, String cpf, String telefone, Date dataNascimento) {
-        this.idUsuario = idUsuario;
-        this.nomeUsuario = nomeUsuario;
-        this.email = email;
-        this.cpf = cpf;
-        this.telefone = telefone;
-        this.dataNascimento = dataNascimento;
-    }
+    @Column(name = "PERMISSAO")
+    private Permissao permissao;
 }

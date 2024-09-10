@@ -14,36 +14,32 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    public Usuario cadastrarUsuario(Usuario usuario){
+    public Usuario cadastrarUsuario(Usuario usuario) {
         return usuarioRepository.save(usuario);
     }
 
-    public List<Usuario> listarUsuarios(){
+    public List<Usuario> listarUsuarios() {
         return usuarioRepository.findAll();
     }
 
-    public Usuario buscarUsuario(Long id){
-        return usuarioRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Usuário não encontrado: ", id));
+    public Usuario buscarUsuario(Long id) {
+        return usuarioRepository.findById(id).orElseThrow(
+                () -> new ObjectNotFoundException("Usuário não encontrado: ", id)
+        );
     }
 
-    public Usuario deletarUsuario(Long id){
-        usuarioRepository.deleteById(id);
-        return null;
+    public void deletarUsuario(Long id) {
+        Usuario usuario = buscarUsuario(id);
+        usuarioRepository.delete(usuario);
     }
 
-    public Usuario atualizarUsuario(Long id, Usuario usuario){
-        Optional<Usuario> optionalUsuario = usuarioRepository.findById(id);
-        if (optionalUsuario.isEmpty()){
-            throw new RuntimeException("Id de usuário não encontrado");
-        }
-
-        Usuario user = optionalUsuario.get();
-
-        user.setNomeUsuario(usuario.getNomeUsuario());
-        user.setEmail(usuario.getEmail());
-        user.setDataNascimento(usuario.getDataNascimento());
-        user.setTelefone(usuario.getTelefone());
-
-        return usuarioRepository.save(user);
+    public Usuario atualizarUsuario(Long id, Usuario usuario) {
+        Usuario upUsuario = buscarUsuario(id);
+        upUsuario.setNomeUsuario(usuario.getNomeUsuario());
+        upUsuario.setEmail(usuario.getEmail());
+        upUsuario.setTelefone(usuario.getTelefone());
+        upUsuario.setDataNascimento(usuario.getDataNascimento());
+        upUsuario.setPermissao(usuario.getPermissao());
+        return usuarioRepository.save(upUsuario);
     }
 }
