@@ -1,15 +1,13 @@
 package br.com.jaircunha.medicalconsult.usuario.domain;
 
+import br.com.jaircunha.medicalconsult.consulta.domain.Consulta;
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
-@Getter
-@Setter
 @Entity
 @Table(name = "USUARIOS")
 public class Usuario {
@@ -29,4 +27,7 @@ public class Usuario {
     private Date dataNascimento;
     @Column(name = "PERMISSAO")
     private Permissao permissao;
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private List<Consulta> consultas;
 }
