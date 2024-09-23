@@ -2,10 +2,14 @@ package br.com.jaircunha.medicalconsult.consulta.domain;
 
 import br.com.jaircunha.medicalconsult.usuario.domain.Usuario;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "CONSULTAS")
 public class Consulta {
@@ -24,11 +28,4 @@ public class Consulta {
     @JoinColumn(name = "idUsuario")
     private Usuario usuario;
 
-    public Consulta(long idConsulta, Date dataConsulta, String especialidade, String profissional, Usuario usuario) {
-        this.idConsulta = idConsulta;
-        this.dataConsulta = dataConsulta;
-        this.especialidade = especialidade;
-        this.profissional = profissional;
-        this.usuario = usuario;
-    }
 }
