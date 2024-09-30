@@ -31,7 +31,7 @@ public class ConsultaResource {
     }
 
     @GetMapping
-    public ResponseEntity<List<Consulta>> listarUsuarios(){
+    public ResponseEntity<List<Consulta>> listarConsultas(){
         return ResponseEntity.ok().body(consultaService.listarConsultas());
     }
 
