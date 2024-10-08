@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 public class SwaggerConfig {
     @Bean
     public OpenAPI customOpenAPI() {
-        SwaggerParseResult swaggerParseResult = new OpenAPIV3Parser().readLocation("src/main/resources/swsagger.yml", null, null);
+        SwaggerParseResult swaggerParseResult = new OpenAPIV3Parser().readLocation("src/main/resources/swagger.yml", null, null);
         return swaggerParseResult.getOpenAPI();
     }
 }
