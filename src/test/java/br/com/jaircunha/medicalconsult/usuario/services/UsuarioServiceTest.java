@@ -13,6 +13,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.internal.verification.VerificationModeFactory.times;
@@ -69,18 +70,43 @@ class UsuarioServiceTest {
         );
     }
 
-    @Test
-    void buscarUsuario(){
+    // Testes semi-funcionando
 
+//    @Test
+//    void buscarUsuario(){
+//        Usuario user = new Usuario();
+//        user.setNomeUsuario("Luis");
+//
+//        // Config do comportamento do MOCK
+//        when(usuarioRepository.findById(user.getIdUsuario())).thenReturn(user);
+//
+//        // Exec do metodo a ser testado
+//        var resultad = usuarioService.buscarUsuario(user.getIdUsuario());
+//
+//        // Validation
+//        assertAll(
+//                () -> assertNotNull(resultad),
+//                () -> assertEquals("Jair", resultad.getNomeUsuario())
+//        );
+//
+//    }
 
-        // Config do comportamento do MOCK
-
-
-        // Exec do metodo a ser testado
-
-
-        // Validation
-
-
-    }
+//    @Test
+//    void deletarUsuario(){
+//        Usuario usuar = new Usuario();
+//        usuar.setNomeUsuario("Fabio");
+//
+//        // Config do comportamento do MOCK
+//        when(usuarioRepository.deleteById(usuar.getIdUsuario())).thenReturn(usuar);
+//
+//        // Exec do metodo a ser testado
+//        var resul = usuarioService.deletarUsuario(usuar.getIdUsuario());
+//
+//        // Validation
+//        assertAll(
+//                () -> assertNotNull(resul),
+//                () -> assertEquals("Diego", resul.getNomeUsuario())
+//        );
+//
+//    }
 }
