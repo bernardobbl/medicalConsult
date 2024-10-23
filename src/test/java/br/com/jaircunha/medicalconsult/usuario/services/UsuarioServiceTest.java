@@ -81,32 +81,30 @@ class UsuarioServiceTest {
 //        when(usuarioRepository.findById(user.getIdUsuario())).thenReturn(user);
 //
 //        // Exec do metodo a ser testado
-//        var resultad = usuarioService.buscarUsuario(user.getIdUsuario());
+//        var resultado = usuarioService.buscarUsuario(user.getIdUsuario());
 //
 //        // Validation
 //        assertAll(
-//                () -> assertNotNull(resultad),
-//                () -> assertEquals("Jair", resultad.getNomeUsuario())
+//                () -> assertNotNull(resultado),
+//                () -> assertEquals("Jair", resultado.getNomeUsuario())
 //        );
 //
 //    }
 
-//    @Test
-//    void deletarUsuario(){
-//        Usuario usuar = new Usuario();
-//        usuar.setNomeUsuario("Fabio");
-//
-//        // Config do comportamento do MOCK
-//        when(usuarioRepository.deleteById(usuar.getIdUsuario())).thenReturn(usuar);
-//
-//        // Exec do metodo a ser testado
-//        var resul = usuarioService.deletarUsuario(usuar.getIdUsuario());
-//
-//        // Validation
-//        assertAll(
-//                () -> assertNotNull(resul),
-//                () -> assertEquals("Diego", resul.getNomeUsuario())
-//        );
-//
-//    }
+    @Test
+    void deletarUsuario(){
+        Usuario usuario = new Usuario();
+        usuario.setNomeUsuario("Fabio");
+        usuario.setIdUsuario(1);
+
+        // Config do comportamento do MOCK
+        when(usuarioRepository.findById(usuario.getIdUsuario())).thenReturn(usuario);
+
+        // Exec do metodo a ser testado
+        usuarioService.deletarUsuario(usuario.getIdUsuario());
+
+        // Validation
+        verify(usuarioRepository, times(1)).deleteById(usuario.getIdUsuario());
+
+    }
 }
