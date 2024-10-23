@@ -10,6 +10,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -72,24 +73,24 @@ class UsuarioServiceTest {
 
     // Testes semi-funcionando
 
-//    @Test
-//    void buscarUsuario(){
-//        Usuario user = new Usuario();
-//        user.setNomeUsuario("Luis");
-//
-//        // Config do comportamento do MOCK
-//        when(usuarioRepository.findById(user.getIdUsuario())).thenReturn(user);
-//
-//        // Exec do metodo a ser testado
-//        var resultado = usuarioService.buscarUsuario(user.getIdUsuario());
-//
-//        // Validation
-//        assertAll(
-//                () -> assertNotNull(resultado),
-//                () -> assertEquals("Jair", resultado.getNomeUsuario())
-//        );
-//
-//    }
+    @Test
+    void buscarUsuario(){
+        Usuario user = new Usuario();
+        user.setNomeUsuario("Luis");
+
+        // Config do comportamento do MOCK
+        when(usuarioRepository.findById(user.getIdUsuario())).thenReturn(Optional.of(user));
+
+        // Exec do metodo a ser testado
+        var resultado = usuarioService.buscarUsuario(user.getIdUsuario());
+
+        // Validation
+        assertAll(
+                () -> assertNotNull(resultado),
+                () -> assertEquals("Jair", resultado.getNomeUsuario())
+        );
+
+    }
 
     @Test
     void deletarUsuario(){
@@ -98,7 +99,7 @@ class UsuarioServiceTest {
         usuario.setIdUsuario(1);
 
         // Config do comportamento do MOCK
-        when(usuarioRepository.findById(usuario.getIdUsuario())).thenReturn(usuario);
+        when(usuarioRepository.findById(usuario.getIdUsuario())).thenReturn(Optional.of(usuario));
 
         // Exec do metodo a ser testado
         usuarioService.deletarUsuario(usuario.getIdUsuario());
