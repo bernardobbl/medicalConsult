@@ -2,7 +2,6 @@ package br.com.jaircunha.medicalconsult.consulta.service;
 
 import br.com.jaircunha.medicalconsult.consulta.domain.Consulta;
 import br.com.jaircunha.medicalconsult.consulta.repository.ConsultaRepository;
-import br.com.jaircunha.medicalconsult.usuario.domain.Usuario;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
