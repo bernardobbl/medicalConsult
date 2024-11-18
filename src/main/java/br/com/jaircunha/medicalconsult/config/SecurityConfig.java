@@ -15,13 +15,35 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+
+    private static final String[] PUBLIC_MATCHERS = {
+            "/h2-console/**",
+            "swagger-ui/**",
+            "/v3/api-docs/**"
+    };
+
+    private static final String[] PUBLIC_MATCHERS_GET = {
+            "/usuarios/**",
+            "/consultas/**"
+    };
+
+    private static final String[] PUBLIC_MATCHERS_POST = {
+            "/usuarios/**",
+            "/consultas/**"
+    };
+
+    private static final String[] PUBLIC_MATCHERS_PUT = {
+            "/usuarios/**",
+            "/consultas/**"
+    };
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.POST, "/usuarios").hasAnyRole("ADMIN", "SECRETARIO")
-                        .requestMatchers(HttpMethod.GET, "/usuarios").permitAll()
-                        .requestMatchers(HttpMethod.PUT, "/usuarios").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, PUBLIC_MATCHERS_POST).hasAnyRole("ADMIN", "SECRETARIO")
+                        .requestMatchers(HttpMethod.GET, PUBLIC_MATCHERS_GET).permitAll()
+                        .requestMatchers(HttpMethod.PUT, PUBLIC_MATCHERS_PUT).hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/usuarios").hasAnyRole("ADMIN", "SECRETARIO")
                         .anyRequest().authenticated()
                 )
