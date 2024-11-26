@@ -55,7 +55,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.POST, PUBLIC_MATCHERS_POST).hasAnyRole("ADMIN", "SECRETARIO")
                         .requestMatchers(HttpMethod.PUT, PUBLIC_MATCHERS_PUT).hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, PUBLIC_MATCHERS_DELETE).hasAnyRole("ADMIN", "SECRETARIO")
+                        .requestMatchers(HttpMethod.DELETE, PUBLIC_MATCHERS_DELETE).hasAnyRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, PUBLIC_MATCHERS_GET).permitAll()
                         .requestMatchers(HttpMethod.GET, PUBLIC_MATCHERS).permitAll()
                         .anyRequest().authenticated()
@@ -73,7 +73,7 @@ public class SecurityConfig {
                 .and()
                 .withUser("CALVIN").password(passwordEncoder.encode("98765")).roles("PACIENTE")
                 .and()
-                .withUser("Fernanda").password(passwordEncoder.encode("121212")).roles("SECRETARIA");
+                .withUser("Fernanda").password(passwordEncoder.encode("121212")).roles("SECRETARIO");
 
     }
 
